@@ -7,7 +7,6 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
-
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
@@ -19,6 +18,10 @@ async def on_ready():
 @bot.command()
 async def hello(ctx):
     await ctx.send("Hello! Gandiv is ready.")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send("Pong! Gandiv is responsive.")
 
 @bot.command()
 async def greet(ctx, *, name: str):
@@ -64,5 +67,9 @@ async def github(ctx, *, username: str):
 
     else:
         await ctx.send("GitHub user not found")
+
+@bot.event
+async def on_command_error(ctx, error):
+    await ctx.send(f"Error: {error}")
 
 bot.run(TOKEN)
