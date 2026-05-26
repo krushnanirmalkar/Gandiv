@@ -2,6 +2,7 @@ import os
 import discord
 from discord.ext import commands
 import requests
+from ai_layer import ask_ai
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -68,8 +69,16 @@ async def github(ctx, *, username: str):
     else:
         await ctx.send("GitHub user not found")
 
+@bot.command()
+
 @bot.event
 async def on_command_error(ctx, error):
     await ctx.send(f"Error: {error}")
 
 bot.run(TOKEN)
+
+@bot.command()
+async def ask(ctx,*,question:str):
+    answer = ask_ai(question)
+    for i in range(0, len(answer), 1900):
+        await ctx.send(answer[i:i+1900])
