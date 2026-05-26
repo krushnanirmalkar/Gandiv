@@ -8,7 +8,7 @@ def ask_ai(question: str) -> str:
         return "No API key found"
     else:
         response = client.chat.completions.create(
-            model="deepseek-v4-flash",
+            model="deepseek/deepseek-chat-v3-0324:free",
             messages=[
                 {"role": "system", "content": "You are Gandiv, a helpful Discord AI assistant. Keep answers clear, short, and beginner-friendly."},
                 {"role": "user", "content": question}
