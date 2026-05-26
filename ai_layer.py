@@ -8,7 +8,7 @@ def ask_ai(question: str) -> str:
         return "No API key found"
     else:
         response = client.responses.create(
-            model="gpt-5.5-mini",
+            model="gpt-4.1-mini",
             input=question
         )
         return response.output_text
