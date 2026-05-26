@@ -69,7 +69,6 @@ async def github(ctx, *, username: str):
     else:
         await ctx.send("GitHub user not found")
 
-@bot.command()
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -81,6 +80,8 @@ async def ask(ctx,*,question:str):
     answer = ask_ai(question)
     for i in range(0, len(answer), 1900):
         await ctx.send(answer[i:i+1900])
+
+
 
 
 bot.run(TOKEN)

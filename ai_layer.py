@@ -1,17 +1,20 @@
 import os
 from openai import OpenAI
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=OPENAI_API_KEY)
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
 def ask_ai(question: str) -> str:
-    if OPENAI_API_KEY is None:
+    if DEEPSEEK_API_KEY is None:
         return "No API key found"
     else:
-        response = client.responses.create(
-            model="gpt-4.1-mini",
-            input=question
+        response = client.chat.completions.create(
+            model="deepseek-v4-flash",
+            messages=[
+                {"role": "system", "content": "You are Gandiv, a helpful Discord AI assistant. Keep answers clear, short, and beginner-friendly."},
+                {"role": "user", "content": question}
+            ]
         )
-        return response.output_text
+        return response.choices[0].message.content.strip()
 
 
 
