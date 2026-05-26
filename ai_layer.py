@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://openrouter.ai/api/v1")
 
 def ask_ai(question: str) -> str:
     if DEEPSEEK_API_KEY is None:
