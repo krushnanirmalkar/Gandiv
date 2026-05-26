@@ -75,10 +75,12 @@ async def github(ctx, *, username: str):
 async def on_command_error(ctx, error):
     await ctx.send(f"Error: {error}")
 
-bot.run(TOKEN)
 
 @bot.command()
 async def ask(ctx,*,question:str):
     answer = ask_ai(question)
     for i in range(0, len(answer), 1900):
         await ctx.send(answer[i:i+1900])
+
+
+bot.run(TOKEN)
