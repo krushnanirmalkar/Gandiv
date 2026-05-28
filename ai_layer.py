@@ -21,6 +21,27 @@ def ask_ai(user_id:str , question: str) -> str:
         answer= response.choices[0].message.content.strip()
         conversation_memory[user_id].append({"role": "assistant", "content": answer})
         return answer
+    
+
+def summarise(text : str) -> str:
+    if DEEPSEEK_API_KEY is None:
+        return "No API key found"
+    else:
+        response = client.chat.completions.create(
+            model="deepseek/deepseek-v4-flash",
+            messages=[
+                {
+                "role": "system",
+                "content": "You are a text summarizer. Summarize clearly in short bullet points."
+            },
+            {
+                "role": "user",
+                "content": text
+            }
+            ]
+        )
+        summary = response.choices[0].message.content.strip()
+        return summary
 
 
 

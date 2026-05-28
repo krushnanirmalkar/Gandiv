@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 import requests
-from ai_layer import ask_ai
+from ai_layer import ask_ai, summarise
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -80,5 +80,11 @@ async def ask(ctx,*,question:str):
     answer = ask_ai(str(ctx.author.id), question)
     for i in range(0, len(answer), 1900):
         await ctx.send(answer[i:i+1900])
+
+@bot.command()
+async def summarize(ctx, *, text: str):
+    summary = summarise(text)
+    for i in range(0, len(summary), 1900):
+        await ctx.send(summary[i:i+1900])
 
 bot.run(TOKEN)
