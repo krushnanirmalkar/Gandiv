@@ -77,11 +77,8 @@ async def on_command_error(ctx, error):
 
 @bot.command()
 async def ask(ctx,*,question:str):
-    answer = ask_ai(question)
+    answer = ask_ai(str(ctx.author.id), question)
     for i in range(0, len(answer), 1900):
         await ctx.send(answer[i:i+1900])
-
-
-
 
 bot.run(TOKEN)
