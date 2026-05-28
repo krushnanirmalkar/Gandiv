@@ -79,6 +79,7 @@ async def on_command_error(ctx, error):
 async def ask(ctx,*,question:str):
     answer = ask_ai(str(ctx.author.id), question)
     for i in range(0, len(answer), 1900):
+        await ctx.send("gandu saale, itna lamba question mat puch, chhota aur simple rakh")
         await ctx.send(answer[i:i+1900])
 
 bot.run(TOKEN)
