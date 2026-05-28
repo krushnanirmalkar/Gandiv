@@ -16,7 +16,7 @@ def ask_ai(user_id:str , question: str) -> str:
             model="deepseek/deepseek-v4-flash",
             messages=[
                 {"role": "system", "content": "You are Gandiv, a helpful Discord AI assistant. Keep answers clear, short, and beginner-friendly."}
-            ]+ conversation_memory[user_id][-10:]
+            ]+ conversation_memory[user_id][-2:]
         )
         answer= response.choices[0].message.content.strip()
         conversation_memory[user_id].append({"role": "assistant", "content": answer})
