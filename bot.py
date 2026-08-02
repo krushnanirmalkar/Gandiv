@@ -18,11 +18,11 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
-    await ctx.send("Hello! Gandiv is ready.")
+    await ctx.send("Hello! Circuit is ready.")
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send("Pong! Gandiv is responsive.")
+    await ctx.send("Pong! Circuit is responsive.")
 
 @bot.command()
 async def greet(ctx, *, name: str):
